@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- PWA мета-теги -->
+<meta name="theme-color" content="#4a90e2">
+<link rel="manifest" href="./manifest.json">
+
+<!-- iOS мета-теги -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PWA Test">
+
+<!-- Иконки -->
+<link rel="icon" type="image/png" href="/pwaTest1/icons/icon-32x32.png">
+<link rel="apple-touch-icon" href="/pwaTest1/icons/icon-152x152.png">
     <title>auth</title>
     <link rel="stylesheet" href="./css/fancybox.css" />
     <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
@@ -267,11 +279,26 @@
       </footer>
     </div>
 
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js')
+          .then(function(registration) {
+            console.log('Service Worker зарегистрирован с областью: ', registration.scope);
+          })
+          .catch(function(err) {
+            console.log('Ошибка регистрации Service Worker: ', err);
+          });
+      });
+    }
+    </script>
     <script src="./js/jquery-3-7-1.min.js"></script>
     <script src="./js/fancybox.umd.js"></script>
     <script src="./js/swiper-bundle.min.js"></script>
     <script src="./js/inputmask.min.js"></script>
     <script src="./js/jquery.validate.min.js"></script>
+    <script src="/pwa-manager.js"></script>
     <script src="./js/main.js"></script>
+    <!-- Service Worker регистрация -->
   </body>
 </html>
